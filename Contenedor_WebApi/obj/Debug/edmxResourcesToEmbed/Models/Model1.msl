@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="App_contenedorModelStoreContainer" CdmEntityContainer="App_contenedorEntities">
+    <EntitySetMapping Name="Applications">
+      <EntityTypeMapping TypeName="App_contenedorModel.Application">
+        <MappingFragment StoreEntitySet="Applications">
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="name_app" ColumnName="name_app" />
+          <ScalarProperty Name="id_app" ColumnName="id_app" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="groups">
+      <EntityTypeMapping TypeName="App_contenedorModel.group">
+        <MappingFragment StoreEntitySet="groups">
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="name_group" ColumnName="name_group" />
+          <ScalarProperty Name="id_group" ColumnName="id_group" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="groups_mod">
+      <EntityTypeMapping TypeName="App_contenedorModel.groups_mod">
+        <MappingFragment StoreEntitySet="groups_mod">
+          <ScalarProperty Name="Id_group" ColumnName="Id_group" />
+          <ScalarProperty Name="Id_mod" ColumnName="Id_mod" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="modules_app">
+      <EntityTypeMapping TypeName="App_contenedorModel.modules_app">
+        <MappingFragment StoreEntitySet="modules_app">
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="icon_mod" ColumnName="icon_mod" />
+          <ScalarProperty Name="name_mod" ColumnName="name_mod" />
+          <ScalarProperty Name="id_app" ColumnName="id_app" />
+          <ScalarProperty Name="Id_mod" ColumnName="Id_mod" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="rols_app">
+      <EntityTypeMapping TypeName="App_contenedorModel.rols_app">
+        <MappingFragment StoreEntitySet="rols_app">
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="name_role" ColumnName="name_role" />
+          <ScalarProperty Name="Id_mod" ColumnName="Id_mod" />
+          <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="App_contenedorModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="last_person" ColumnName="last_person" />
+          <ScalarProperty Name="name_person" ColumnName="name_person" />
+          <ScalarProperty Name="name_user" ColumnName="name_user" />
+          <ScalarProperty Name="Id_user" ColumnName="Id_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users_mod">
+      <EntityTypeMapping TypeName="App_contenedorModel.users_mod">
+        <MappingFragment StoreEntitySet="users_mod">
+          <ScalarProperty Name="Id_user" ColumnName="Id_user" />
+          <ScalarProperty Name="Id_mod" ColumnName="Id_mod" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

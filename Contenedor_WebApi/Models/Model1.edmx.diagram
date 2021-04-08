@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="66ea0a4491f442b6b83eeedaf03111cd" Name="Diagram1" >
+        <EntityTypeShape EntityType="App_contenedorModel.Application" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="App_contenedorModel.group" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="App_contenedorModel.groups_mod" Width="1.5" PointX="5.25" PointY="1.625" />
+        <EntityTypeShape EntityType="App_contenedorModel.modules_app" Width="1.5" PointX="3" PointY="4.25" />
+        <EntityTypeShape EntityType="App_contenedorModel.rols_app" Width="1.5" PointX="5.25" PointY="10.125" />
+        <EntityTypeShape EntityType="App_contenedorModel.user" Width="1.5" PointX="3" PointY="8.5" />
+        <EntityTypeShape EntityType="App_contenedorModel.users_mod" Width="1.5" PointX="5.25" PointY="4.625" />
+        <AssociationConnector Association="App_contenedorModel.FK__modules_a__id_ap__4F7CD00D" />
+        <AssociationConnector Association="App_contenedorModel.FK__groups_mo__Id_gr__5629CD9C" />
+        <AssociationConnector Association="App_contenedorModel.FK__groups_mo__Id_mo__5535A963" />
+        <AssociationConnector Association="App_contenedorModel.FK__rols_app__Id_mod__52593CB8" />
+        <AssociationConnector Association="App_contenedorModel.FK__users_mod__Id_mo__59063A47" />
+        <AssociationConnector Association="App_contenedorModel.FK__users_mod__Id_us__59FA5E80" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

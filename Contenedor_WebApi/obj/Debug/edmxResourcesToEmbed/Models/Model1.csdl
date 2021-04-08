@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="App_contenedorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="App_contenedorEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Applications" EntityType="App_contenedorModel.Application" />
+    <EntitySet Name="groups" EntityType="App_contenedorModel.group" />
+    <EntitySet Name="groups_mod" EntityType="App_contenedorModel.groups_mod" />
+    <EntitySet Name="modules_app" EntityType="App_contenedorModel.modules_app" />
+    <EntitySet Name="rols_app" EntityType="App_contenedorModel.rols_app" />
+    <EntitySet Name="users" EntityType="App_contenedorModel.user" />
+    <EntitySet Name="users_mod" EntityType="App_contenedorModel.users_mod" />
+    <AssociationSet Name="FK__modules_a__id_ap__4F7CD00D" Association="App_contenedorModel.FK__modules_a__id_ap__4F7CD00D">
+      <End Role="Application" EntitySet="Applications" />
+      <End Role="modules_app" EntitySet="modules_app" />
+    </AssociationSet>
+    <AssociationSet Name="FK__groups_mo__Id_gr__5629CD9C" Association="App_contenedorModel.FK__groups_mo__Id_gr__5629CD9C">
+      <End Role="group" EntitySet="groups" />
+      <End Role="groups_mod" EntitySet="groups_mod" />
+    </AssociationSet>
+    <AssociationSet Name="FK__groups_mo__Id_mo__5535A963" Association="App_contenedorModel.FK__groups_mo__Id_mo__5535A963">
+      <End Role="modules_app" EntitySet="modules_app" />
+      <End Role="groups_mod" EntitySet="groups_mod" />
+    </AssociationSet>
+    <AssociationSet Name="FK__rols_app__Id_mod__52593CB8" Association="App_contenedorModel.FK__rols_app__Id_mod__52593CB8">
+      <End Role="modules_app" EntitySet="modules_app" />
+      <End Role="rols_app" EntitySet="rols_app" />
+    </AssociationSet>
+    <AssociationSet Name="FK__users_mod__Id_mo__59063A47" Association="App_contenedorModel.FK__users_mod__Id_mo__59063A47">
+      <End Role="modules_app" EntitySet="modules_app" />
+      <End Role="users_mod" EntitySet="users_mod" />
+    </AssociationSet>
+    <AssociationSet Name="FK__users_mod__Id_us__59FA5E80" Association="App_contenedorModel.FK__users_mod__Id_us__59FA5E80">
+      <End Role="user" EntitySet="users" />
+      <End Role="users_mod" EntitySet="users_mod" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Application">
+    <Key>
+      <PropertyRef Name="id_app" />
+    </Key>
+    <Property Name="id_app" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_app" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Is_Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="modules_app" Relationship="App_contenedorModel.FK__modules_a__id_ap__4F7CD00D" FromRole="Application" ToRole="modules_app" />
+  </EntityType>
+  <EntityType Name="group">
+    <Key>
+      <PropertyRef Name="id_group" />
+    </Key>
+    <Property Name="id_group" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_group" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Is_Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="groups_mod" Relationship="App_contenedorModel.FK__groups_mo__Id_gr__5629CD9C" FromRole="group" ToRole="groups_mod" />
+  </EntityType>
+  <EntityType Name="groups_mod">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_mod" Type="Int32" Nullable="false" />
+    <Property Name="Id_group" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="group" Relationship="App_contenedorModel.FK__groups_mo__Id_gr__5629CD9C" FromRole="groups_mod" ToRole="group" />
+    <NavigationProperty Name="modules_app" Relationship="App_contenedorModel.FK__groups_mo__Id_mo__5535A963" FromRole="groups_mod" ToRole="modules_app" />
+  </EntityType>
+  <EntityType Name="modules_app">
+    <Key>
+      <PropertyRef Name="Id_mod" />
+    </Key>
+    <Property Name="Id_mod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_app" Type="Int32" Nullable="false" />
+    <Property Name="name_mod" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="icon_mod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Is_Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Application" Relationship="App_contenedorModel.FK__modules_a__id_ap__4F7CD00D" FromRole="modules_app" ToRole="Application" />
+    <NavigationProperty Name="groups_mod" Relationship="App_contenedorModel.FK__groups_mo__Id_mo__5535A963" FromRole="modules_app" ToRole="groups_mod" />
+    <NavigationProperty Name="rols_app" Relationship="App_contenedorModel.FK__rols_app__Id_mod__52593CB8" FromRole="modules_app" ToRole="rols_app" />
+    <NavigationProperty Name="users_mod" Relationship="App_contenedorModel.FK__users_mod__Id_mo__59063A47" FromRole="modules_app" ToRole="users_mod" />
+  </EntityType>
+  <EntityType Name="rols_app">
+    <Key>
+      <PropertyRef Name="id_rol" />
+    </Key>
+    <Property Name="id_rol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_mod" Type="Int32" Nullable="false" />
+    <Property Name="name_role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Is_Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="modules_app" Relationship="App_contenedorModel.FK__rols_app__Id_mod__52593CB8" FromRole="rols_app" ToRole="modules_app" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="Id_user" />
+    </Key>
+    <Property Name="Id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_user" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="name_person" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="last_person" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Is_Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="users_mod" Relationship="App_contenedorModel.FK__users_mod__Id_us__59FA5E80" FromRole="user" ToRole="users_mod" />
+  </EntityType>
+  <EntityType Name="users_mod">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_mod" Type="Int32" Nullable="false" />
+    <Property Name="Id_user" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="modules_app" Relationship="App_contenedorModel.FK__users_mod__Id_mo__59063A47" FromRole="users_mod" ToRole="modules_app" />
+    <NavigationProperty Name="user" Relationship="App_contenedorModel.FK__users_mod__Id_us__59FA5E80" FromRole="users_mod" ToRole="user" />
+  </EntityType>
+  <Association Name="FK__modules_a__id_ap__4F7CD00D">
+    <End Type="App_contenedorModel.Application" Role="Application" Multiplicity="1" />
+    <End Type="App_contenedorModel.modules_app" Role="modules_app" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Application">
+        <PropertyRef Name="id_app" />
+      </Principal>
+      <Dependent Role="modules_app">
+        <PropertyRef Name="id_app" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__groups_mo__Id_gr__5629CD9C">
+    <End Type="App_contenedorModel.group" Role="group" Multiplicity="1" />
+    <End Type="App_contenedorModel.groups_mod" Role="groups_mod" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="group">
+        <PropertyRef Name="id_group" />
+      </Principal>
+      <Dependent Role="groups_mod">
+        <PropertyRef Name="Id_group" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__groups_mo__Id_mo__5535A963">
+    <End Type="App_contenedorModel.modules_app" Role="modules_app" Multiplicity="1" />
+    <End Type="App_contenedorModel.groups_mod" Role="groups_mod" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="modules_app">
+        <PropertyRef Name="Id_mod" />
+      </Principal>
+      <Dependent Role="groups_mod">
+        <PropertyRef Name="Id_mod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__rols_app__Id_mod__52593CB8">
+    <End Type="App_contenedorModel.modules_app" Role="modules_app" Multiplicity="1" />
+    <End Type="App_contenedorModel.rols_app" Role="rols_app" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="modules_app">
+        <PropertyRef Name="Id_mod" />
+      </Principal>
+      <Dependent Role="rols_app">
+        <PropertyRef Name="Id_mod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__users_mod__Id_mo__59063A47">
+    <End Type="App_contenedorModel.modules_app" Role="modules_app" Multiplicity="1" />
+    <End Type="App_contenedorModel.users_mod" Role="users_mod" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="modules_app">
+        <PropertyRef Name="Id_mod" />
+      </Principal>
+      <Dependent Role="users_mod">
+        <PropertyRef Name="Id_mod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__users_mod__Id_us__59FA5E80">
+    <End Type="App_contenedorModel.user" Role="user" Multiplicity="1" />
+    <End Type="App_contenedorModel.users_mod" Role="users_mod" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="Id_user" />
+      </Principal>
+      <Dependent Role="users_mod">
+        <PropertyRef Name="Id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

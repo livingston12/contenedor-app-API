@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="App_contenedorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Applications">
+    <Key>
+      <PropertyRef Name="id_app" />
+    </Key>
+    <Property Name="id_app" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name_app" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Is_Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="groups">
+    <Key>
+      <PropertyRef Name="id_group" />
+    </Key>
+    <Property Name="id_group" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name_group" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Is_Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="groups_mod">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_mod" Type="int" Nullable="false" />
+    <Property Name="Id_group" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="modules_app">
+    <Key>
+      <PropertyRef Name="Id_mod" />
+    </Key>
+    <Property Name="Id_mod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_app" Type="int" Nullable="false" />
+    <Property Name="name_mod" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="icon_mod" Type="varchar" MaxLength="50" />
+    <Property Name="Is_Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="rols_app">
+    <Key>
+      <PropertyRef Name="id_rol" />
+    </Key>
+    <Property Name="id_rol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_mod" Type="int" Nullable="false" />
+    <Property Name="name_role" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Is_Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="Id_user" />
+    </Key>
+    <Property Name="Id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name_user" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="name_person" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="last_person" Type="varchar" MaxLength="100" />
+    <Property Name="Is_Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="users_mod">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_mod" Type="int" Nullable="false" />
+    <Property Name="Id_user" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__groups_mo__Id_gr__5629CD9C">
+    <End Role="groups" Type="Self.groups" Multiplicity="1" />
+    <End Role="groups_mod" Type="Self.groups_mod" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="groups">
+        <PropertyRef Name="id_group" />
+      </Principal>
+      <Dependent Role="groups_mod">
+        <PropertyRef Name="Id_group" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__groups_mo__Id_mo__5535A963">
+    <End Role="modules_app" Type="Self.modules_app" Multiplicity="1" />
+    <End Role="groups_mod" Type="Self.groups_mod" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="modules_app">
+        <PropertyRef Name="Id_mod" />
+      </Principal>
+      <Dependent Role="groups_mod">
+        <PropertyRef Name="Id_mod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__modules_a__id_ap__4F7CD00D">
+    <End Role="Applications" Type="Self.Applications" Multiplicity="1" />
+    <End Role="modules_app" Type="Self.modules_app" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Applications">
+        <PropertyRef Name="id_app" />
+      </Principal>
+      <Dependent Role="modules_app">
+        <PropertyRef Name="id_app" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__rols_app__Id_mod__52593CB8">
+    <End Role="modules_app" Type="Self.modules_app" Multiplicity="1" />
+    <End Role="rols_app" Type="Self.rols_app" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="modules_app">
+        <PropertyRef Name="Id_mod" />
+      </Principal>
+      <Dependent Role="rols_app">
+        <PropertyRef Name="Id_mod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__users_mod__Id_mo__59063A47">
+    <End Role="modules_app" Type="Self.modules_app" Multiplicity="1" />
+    <End Role="users_mod" Type="Self.users_mod" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="modules_app">
+        <PropertyRef Name="Id_mod" />
+      </Principal>
+      <Dependent Role="users_mod">
+        <PropertyRef Name="Id_mod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__users_mod__Id_us__59FA5E80">
+    <End Role="users" Type="Self.users" Multiplicity="1" />
+    <End Role="users_mod" Type="Self.users_mod" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="Id_user" />
+      </Principal>
+      <Dependent Role="users_mod">
+        <PropertyRef Name="Id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="App_contenedorModelStoreContainer">
+    <EntitySet Name="Applications" EntityType="Self.Applications" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="groups" EntityType="Self.groups" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="groups_mod" EntityType="Self.groups_mod" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="modules_app" EntityType="Self.modules_app" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="rols_app" EntityType="Self.rols_app" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users_mod" EntityType="Self.users_mod" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__groups_mo__Id_gr__5629CD9C" Association="Self.FK__groups_mo__Id_gr__5629CD9C">
+      <End Role="groups" EntitySet="groups" />
+      <End Role="groups_mod" EntitySet="groups_mod" />
+    </AssociationSet>
+    <AssociationSet Name="FK__groups_mo__Id_mo__5535A963" Association="Self.FK__groups_mo__Id_mo__5535A963">
+      <End Role="modules_app" EntitySet="modules_app" />
+      <End Role="groups_mod" EntitySet="groups_mod" />
+    </AssociationSet>
+    <AssociationSet Name="FK__modules_a__id_ap__4F7CD00D" Association="Self.FK__modules_a__id_ap__4F7CD00D">
+      <End Role="Applications" EntitySet="Applications" />
+      <End Role="modules_app" EntitySet="modules_app" />
+    </AssociationSet>
+    <AssociationSet Name="FK__rols_app__Id_mod__52593CB8" Association="Self.FK__rols_app__Id_mod__52593CB8">
+      <End Role="modules_app" EntitySet="modules_app" />
+      <End Role="rols_app" EntitySet="rols_app" />
+    </AssociationSet>
+    <AssociationSet Name="FK__users_mod__Id_mo__59063A47" Association="Self.FK__users_mod__Id_mo__59063A47">
+      <End Role="modules_app" EntitySet="modules_app" />
+      <End Role="users_mod" EntitySet="users_mod" />
+    </AssociationSet>
+    <AssociationSet Name="FK__users_mod__Id_us__59FA5E80" Association="Self.FK__users_mod__Id_us__59FA5E80">
+      <End Role="users" EntitySet="users" />
+      <End Role="users_mod" EntitySet="users_mod" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
