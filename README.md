@@ -4,7 +4,7 @@ Esto es un contenedor de aplicaciones.
 
 Este contenedor es una **api Rest** con  **vue Js**.
 
-URL **Front End**: https://github.com/livingston12/contenedor-app-API
+URL **Front End**: https://github.com/livingston12/Contenedor_Apps
 
 # Coneccion
 * Para conectar esta aplicacion **Front End** tienes que ir a el js llamado **scripts_general**  
